@@ -55,7 +55,8 @@ let
       ''
         cp -f ${substitutedNixManualReference} source/reference/nix-manual.md
         make html
-        make latexpdf
+        # Skip PDF: FreeSerif has no CJK glyphs (Chinese docs would fail xelatex)
+        # make latexpdf
       '';
     installPhase =
       let
@@ -82,7 +83,8 @@ let
       ''
         mkdir -p $out/manual/nix
         cp -R build/html/* $out/
-        cp build/latex/nix-dev.pdf $out/
+        # PDF skipped together with latexpdf above
+        # cp build/latex/nix-dev.pdf $out/
         cp netlify.toml $out/
       ''
       + lib.optionalString withManuals ''

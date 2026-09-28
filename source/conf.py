@@ -142,13 +142,15 @@ todo_include_todos = True
 
 # -- Options for HTML output ----------------------------------------------
 
-html_baseurl = "https://nix.dev/"
+html_baseurl = os.environ.get("HTML_BASEURL", "https://nix.dev/")
 
 html_theme = "sphinx_book_theme"
 
 # https://sphinx-book-theme.readthedocs.io/en/stable/reference.html
 html_theme_options = {
-    "repository_url": "https://github.com/nixos/nix.dev",
+    "repository_url": os.environ.get(
+        "REPOSITORY_URL", "https://github.com/NixOS/nix.dev"
+    ),
     "repository_branch": "master",
     "path_to_docs": "source",
     "use_repository_button": True,
@@ -460,4 +462,4 @@ html_css_files = [
 sitemap_url_scheme = "{link}"
 
 # Not found
-notfound_urls_prefix = "/"
+notfound_urls_prefix = os.environ.get("NOTFOUND_URLS_PREFIX", "/")
